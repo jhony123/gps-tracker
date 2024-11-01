@@ -1,0 +1,8 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "location-dashboard-react-vite/Dockerfile"
+
+[deploy]
+healthcheckPath = "/ping"
+restartPolicyMaxRetries = 5
+restartPolicyType = "ON_FAILURE"

@@ -14,7 +14,7 @@ export const MainDashboard = () => {
   const [locations, setLocations] = useState<LastKnownLocationsResponse[]>([]);
 
   useEffect(() => {
-    getLastKnownLocations({ lastNumber: 100, boardId: 1 })
+    getLastKnownLocations({ lastNumber: 50, boardId: 1 })
       .then((res) => {
         setLocations(res.data);
       })
@@ -45,7 +45,7 @@ export const MainDashboard = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {locations.map((location) => {
-          const speedKmph = 1.852 * parseFloat(location.speed);
+          // const speedKmph = 1.852 * parseFloat(location.speed);
           return (
             <Marker
               key={location.id}
@@ -55,7 +55,8 @@ export const MainDashboard = () => {
               ]}
             >
               <Popup>
-                {location.gpsTime} <br /> Speed: {speedKmph.toFixed(2)} km/h
+                {location.gpsTime}
+                {/* <br /> Speed: {speedKmph.toFixed(2)} km/h */}
               </Popup>
             </Marker>
           );

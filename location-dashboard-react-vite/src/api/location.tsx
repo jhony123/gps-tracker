@@ -23,7 +23,7 @@ type LastKnownLocationsRequest = {
   boardId: number;
 };
 
-export type LastKnownLocationsResponse = {
+export type LocationsResponse = {
   id: number;
   gpsLongitude: string;
   gpsLatitude: string;
@@ -37,7 +37,7 @@ export const getLastKnownLocations = ({
   lastNumber,
   boardId,
 }: LastKnownLocationsRequest) =>
-  locationApi.get<LastKnownLocationsResponse[]>("/lastKnownLocations", {
+  locationApi.get<LocationsResponse[]>("/lastKnownLocations", {
     params: {
       lastNumber,
       boardId,

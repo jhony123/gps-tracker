@@ -1,14 +1,19 @@
 import { AuthProvider } from "./hooks/useAuth";
 import { AppRoutes } from "./AppRoutes.tsx";
 
-import "./App.css";
+import Container from "react-bootstrap/Container";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import "./App.scss";
 
 function App() {
   return (
     <>
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
+      <Container fluid>
+        <AuthProvider>
+          <AppRoutes />
+        </AuthProvider>
+      </Container>
     </>
   );
 }

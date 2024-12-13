@@ -49,7 +49,23 @@ const getLastKnownLocations = (req, res) => {
     });
 };
 
+const getLocations = (req, res) => {
+  const { boardId, startDate, endDate } = req.query;
+  locationDb
+    .query(
+      `SELECT * FROM public.location WHERE "boardId" = $1 AND "servertime" >= $2 AND "servertime" < $3`,
+      [boardId, startDate, endDate]
+    )
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch(() => {
+      res.send("try again");
+    });
+};
+
 module.exports = {
   addLocationFromBoard,
+  getLocations,
   getLastKnownLocations,
 };

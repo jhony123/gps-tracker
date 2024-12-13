@@ -8,7 +8,11 @@ const {
   _5per1minLimit,
 } = require("./rate-limits");
 const { loginUser, verifyUser } = require("./user");
-const { addLocationFromBoard, getLastKnownLocations } = require("./location");
+const {
+  addLocationFromBoard,
+  getLocations,
+  getLastKnownLocations,
+} = require("./location");
 
 app.use(cors({ origin: process.env.CLIENT_URL }));
 
@@ -20,6 +24,8 @@ app.get(
   verifyUser,
   getLastKnownLocations
 );
+
+app.get("/location/locations", _100per15minLimit, verifyUser, getLocations);
 
 app.post("/location", _5per1minLimit, bodyParser.text(), addLocationFromBoard);
 

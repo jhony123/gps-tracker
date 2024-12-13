@@ -19,8 +19,8 @@ locationApi.interceptors.request.use(
 );
 
 type LastKnownLocationsRequest = {
-  lastNumber: number;
   boardId: number;
+  lastNumber: number;
 };
 
 export type LocationsResponse = {
@@ -31,15 +31,35 @@ export type LocationsResponse = {
   boardId: number;
   speed: string;
   voltage: string;
+  servertime: string;
 };
 
 export const getLastKnownLocations = ({
-  lastNumber,
   boardId,
+  lastNumber,
 }: LastKnownLocationsRequest) =>
   locationApi.get<LocationsResponse[]>("/lastKnownLocations", {
     params: {
       lastNumber,
       boardId,
+    },
+  });
+
+type LocationsRequest = {
+  boardId: number;
+  startDate: Date;
+  endDate: Date;
+};
+
+export const getLocations = ({
+  boardId,
+  startDate,
+  endDate,
+}: LocationsRequest) =>
+  locationApi.get<LocationsResponse[]>("/locations", {
+    params: {
+      boardId,
+      startDate,
+      endDate,
     },
   });
